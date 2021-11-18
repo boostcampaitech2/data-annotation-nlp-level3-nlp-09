@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from fleiss import fleissKappa
 
-result = pd.read_excel('q100_3.xlsx',engine='openpyxl')
+result = pd.read_excel('./data/q100_3.xlsx',engine='openpyxl')
 result = result.to_numpy()
 num_classes = int(np.max(result)) + 1
 
