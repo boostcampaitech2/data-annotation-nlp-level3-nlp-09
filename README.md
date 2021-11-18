@@ -1,39 +1,13 @@
-# KLUE Relation Extraction Competition, Naver Boostcamp AI Tech 2기
+# Data annotation competition, Naver Boostcamp AI Tech 2기
 ## Competition Abstract
-🤗 KLUE RE(Relation Extraction) Dataset으로 주어진 문장의 지정된 두 Entity의 관계를 추출, 분류하는 Task.  
-🤗 Public, Private 데이터가 분리된 Leaderboard 평가가 이루어짐.  
-🤗 하루 10회로 모델 제출 제한
+🤗 Relation Extractions task에 사용한 데이터를 직접 제작하는 task.
+🤗 Relation set 정의, 가이드라인 작성, Pilot/Main annotation, Model Fine-tuning 진행
 
-## [Team Portfolio](https://naem1023.notion.site/KLUE-ad3b884f6c2a4f28a00b548aa12c51b6)
-## [Solution Presentation(PDF)](competition_results/KLUE_2등_솔루션(9조)발표자료.pdf)
-## [Competition Report(PDF)](competition_results/Competition%20Report.pdf)
-## Our solutions
-- 'klue/roberta-large' with BiLSTM
-- Modify Input format
-  - Typed Entity Marker with Punctuation 
-  - Add Query like Question and Answering
-- Augmentation
-  - Subject & Object Entity Random Masking
-  - AEDA
-  - Random Delete
-  - Entity swap
-- Ensemble
-  - Stratified K-Fold & OOF(Out-of-Fold) Prediction
-  - K-fold Ensemble via weighted soft voting
-
-## 최종 순위 2등!
-<img src="competition_results/capture.png" width="80%">
-
---- 
-## Docs 
-- Model docs
-  - [Developed models](models\README.md)
-- Augmentation docs
-  - [Task Adaptive Pre-Training via Back translation](./augmentation/back_trans/README.md)
-  - [EDA](./augmentation/README.md#eda)
-  - [AEDA](./augmentation/README.md#aeda)
-  - [Random masking](./augmentation/README.md#random-masking)
-
+## [Team Portfolio]()
+## [Competition Report(PDF)]()
+## Reulst
+- [Relation map](https://docs.google.com/spreadsheets/d/1rXz57Yxs80HhgqP2W4A016liz0dfz2a4_sZE96uokGM/edit)
+- [Guideline](https://docs.google.com/document/d/1qDx4riQMJLYZf97j8BPY0FGs31iv_klXg2YztoJAD_g/edit)
 ## Quickstart
 ### Installation
 ```
@@ -42,20 +16,14 @@ pip install -r requirements.txt
 ### Train model
 ```python
 # default wandb setting in train.py
-run = wandb.init(project= 'klue', entity= 'quarter100', name= f'KFOLD_{fold}_{args.wandb_path}')
+run = wandb.init(project= 'dataset', entity= 'quarter100', name= f'KFOLD_{fold}_{args.wandb_path}')
 ```
 
 ```
 python train.py
 ```
-Models are saved in "./best_model/".
 ### Inference
 ```
 python inference_fold.py
 ```
 Prediction csv files are saved in "./prediction".
-### Ensemble
-```
-python vote.py
-```
-Ensemble result is saved in "./prediction/submission_fold_total.csv".
